@@ -35,8 +35,8 @@ The script performs the following actions in order:
     *   Changes the device's screen timeout to **30 minutes** to prevent it from sleeping during the process.
 
 3.  **Removes Screen Lock**:
-    *   Attempts to remove the screen lock (PIN, pattern, password) using several different methods.
-    *   **Note**: This may not work on all devices or Android versions. If it fails, you may need to disable the screen lock manually in `Settings > Security`.
+    *   Attempts to remove the screen lock (PIN, pattern, password) using several different methods, including clearing lock settings and attempting to set a blank password/PIN to force the lock to 'None'.
+    *   **Note**: This may not work on all devices or Android versions due to varying security restrictions. If it fails, you may need to disable the screen lock manually in `Settings > Security`.
 
 4.  **Disables Security Features**:
     *   Adjusts device settings to allow the installation of apps from unknown sources and disables app verification over ADB. This is necessary for installing APKs that are not from the Google Play Store.
