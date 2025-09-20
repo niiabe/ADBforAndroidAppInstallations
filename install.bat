@@ -63,6 +63,11 @@ rem Method 4: Use newer Android API for lock settings
 echo Trying method 4: Using newer lock settings API...
 adb shell cmd lock_settings clear --user 0
 
+rem Method 5: Set a blank password to force lock to 'None'
+echo Trying method 5: Setting blank password/PIN...
+adb shell locksettings set-password ""
+adb shell locksettings set-pin ""
+
 echo NOTE: Screen lock removal may require manual confirmation on the device.
 echo If methods fail, please manually disable screen lock in Settings > Security.
 echo.
