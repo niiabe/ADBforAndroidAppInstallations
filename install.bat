@@ -97,20 +97,20 @@ for %%f in (*.apk) do (
     set /a install_count+=1
     echo [!install_count!/%apk_count%] Installing "%%f"...
     
-    rem Try installing with different flags for better compatibility
-    adb install -r -t -d "%%f"
+    rem Try installing and granting all runtime permissions (-g flag)
+    adb install -r -g "%%f"
     if !errorlevel! equ 0 (
-        echo SUCCESS: "%%f" installed successfully
+        echo SUCCESS: "%%f" installed and permissions granted.
         set /a success_count+=1
     ) else (
-        echo FAILED: "%%f" installation failed
-        echo Trying alternative installation method...
-        adb install -r -g "%%f"
+        echo FAILED: "%%f" installation with permission grant failed.
+        echo Trying standard installation method...
+        adb install -r "%%f"
         if !errorlevel! equ 0 (
-            echo SUCCESS: "%%f" installed with alternative method
+            echo SUCCESS: "%%f" installed but permissions may need to be granted manually.
             set /a success_count+=1
         ) else (
-            echo ERROR: "%%f" could not be installed
+            echo ERROR: "%%f" could not be installed.
         )
     )
     echo.
@@ -128,7 +128,7 @@ rem === Final recommendations ===
 echo RECOMMENDATIONS:
 echo 1. If screen lock wasn't removed, manually go to Settings ^> Security ^> Screen Lock ^> None
 echo 2. Check Settings ^> Apps for installed applications
-echo 3. Some apps may require additional permissions - grant them manually
+echo 3. If an app required the standard install, you may need to grant permissions manually.
 echo 4. Reboot the device if apps don't appear or behave unexpectedly
 
 :end

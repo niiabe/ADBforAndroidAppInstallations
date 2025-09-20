@@ -41,9 +41,10 @@ The script performs the following actions in order:
 4.  **Disables Security Features**:
     *   Adjusts device settings to allow the installation of apps from unknown sources and disables app verification over ADB. This is necessary for installing APKs that are not from the Google Play Store.
 
-5.  **Installs APKs**:
+5.  **Installs APKs and Grants Permissions**:
     *   Scans the current directory for any files with the `.apk` extension.
-    *   Installs each APK found onto the connected device. It tries a couple of different installation commands for better compatibility.
+    *   Installs each APK and attempts to grant all runtime permissions (like file access) automatically by using the `-g` flag with `adb install`.
+    *   If the installation with permissions fails, it attempts a standard installation without granting permissions. In this case, you may need to grant permissions manually.
 
 6.  **Provides a Summary**:
     *   At the end, it shows a summary of how many APKs were found and how many were installed successfully.
